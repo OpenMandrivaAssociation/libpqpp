@@ -1,13 +1,11 @@
-%define	name	libpq++
-%define	version	4.0
-
-%define	major	4
-%define libname	%mklibname pq++ %{major}
+%define	major 4
+%define libname %mklibname pq++ %{major}
+%define develname %mklibname pq++ -d
 
 Summary:	C++ interface for PostgreSQL
-Name:		%{name}
-Version:	%{version}
-Release:	%mkrel 10
+Name:		libpq++
+Version:	4.0
+Release:	%mkrel 11
 URL:		http://gborg.postgresql.org/project/libpqpp/projdisplay.php
 License:	BSD
 Source0:	%{name}-%{version}.tar.bz2
@@ -32,14 +30,15 @@ Group:          System/Libraries
 This is the C++ interface that has shipped as part of PostgreSQL
 until v7.2.3.
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Development library and header files for %{name}
 Group:		Development/C++
 Requires:	%{libname} = %{version}
-Provides:	pq++-devel
-Provides:	libpq++-devel
+Provides:	pq++-devel = %{version}-%{release}
+Provides:	libpq++-devel = %{version}-%{release}
+Obsoletes:	%{mklibname pq++ 4 -d}
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 This is the C++ interface that has shipped as part of PostgreSQL
 until v7.2.3.
 
@@ -92,12 +91,10 @@ ln -s libpq++.so.%{major}.0 %{buildroot}%{_libdir}/libpq++.so
 %doc CHANGES README
 %{_libdir}/lib*.so.*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %doc docs/*
 %{_includedir}/pgsql/*.h
 %{_includedir}/pgsql/libpq++/*.h
 %{_libdir}/lib*.so
 %{_libdir}/lib*.a
-
-
