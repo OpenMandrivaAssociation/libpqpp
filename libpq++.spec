@@ -16,7 +16,6 @@ BuildRequires:	postgresql-libs-devel
 BuildRequires:	libgcc
 BuildRequires:	libstdc++-devel
 BuildRequires:	openssl-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This is the C++ interface that has shipped as part of PostgreSQL
