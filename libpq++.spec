@@ -10,6 +10,7 @@ URL:		http://gborg.postgresql.org/project/libpqpp/projdisplay.php
 License:	BSD
 Source0:	%{name}-%{version}.tar.bz2
 Patch0:		libpq++-4.0-Makefile.patch
+Patch1:		libpq++-4.0-gcc43.patch
 Group:		System/Libraries
 BuildRequires:	postgresql-devel
 BuildRequires:	postgresql-libs-devel
@@ -49,6 +50,7 @@ needed to compile applications such as PowerDNS, etc.
 
 %setup -q -n %{name}-%{version}
 %patch0 -p0
+%patch1 -p0
 
 # clean up CVS stuff
 for i in `find . -type d -name CVS` `find . -type f -name .cvs\*` `find . -type f -name .#\*`; do
@@ -59,7 +61,7 @@ done
 
 %serverbuild
 
-%make CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC"
+%make CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} %ldflags -fPIC"
 
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
