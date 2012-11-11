@@ -1,0 +1,43 @@
+--- Makefile	2002-11-27 05:46:08.000000000 +0100
++++ Makefile.oden	2003-01-17 10:48:49.000000000 +0100
+@@ -11,28 +11,32 @@
+ SO_MAJOR_VERSION= 4
+ SO_MINOR_VERSION= 0
+ 
+-POSTGRES_HOME=/usr/local/pgsql
++POSTGRES_HOME=/usr
+ CXXOPTS= -DHAVE_NAMESPACE_STD -DHAVE_CXX_STRING_HEADER -DDLLIMPORT=""
+ 
+ TARGET= libpq++
+-CFLAGS= -O -Wall
+-LIBS=pq
++CFLAGS= $(RPM_OPT_FLAGS)
++LIBS= -lpq -lgcc -lcrypto -lssl -lstdc++
++
+ OBJS= pgconnection.o pgdatabase.o pgtransdb.o pgcursordb.o pglobject.o
+ LIBPGXXHEADERS = pgconnection.h pgdatabase.h pgtransdb.h pgcursordb.h pglobject.h
+ 
+-SHARED= -fpic -shared -Wl,-x,-soname,$(TARGET).so.$(SO_MAJOR_VERSION) -Wl,-rpath,$(POSTGRES_HOME)/lib
++SHARED= -fpic -shared -Wl,-x,-soname,$(TARGET).so.$(SO_MAJOR_VERSION)
+ soname=$(TARGET).so.$(SO_MAJOR_VERSION).$(SO_MINOR_VERSION)
+ 
+-all:  $(soname)
++all:  $(soname) $(TARGET).a
+ 
+ $(soname) : $(OBJS)
+-	$(CXX) $(CXXFLAGS) $(OBJS) -L$(POSTGRES_HOME)/lib -l$(LIBS) $(SHARED) -o $(soname)
++	$(CXX) $(CXXFLAGS) $(OBJS) -L$(POSTGRES_HOME)/lib $(LIBS) $(SHARED) -o $(soname)
+ 
+ %.o	: %.cc
+-	$(CXX) -c $(CXXFLAGS) $(CXXOPTS) -I$(POSTGRES_HOME)/include $<
++	$(CXX) -c $(CXXFLAGS) $(CXXOPTS) -I$(POSTGRES_HOME)/include/pgsql $<
++
++$(TARGET).a: $(OBJS)
++	ar -crs $@ $^
+ 
+ clean:
+-	rm -f $(OBJS) $(soname)
++	rm -f $(OBJS) $(soname) $(TARGET).a
+ 
+ install:
+ 	install $(soname) $(POSTGRES_HOME)/lib
