@@ -104,3 +104,56 @@ ln -s libpq++.so.%{major}.0 %{buildroot}%{_libdir}/libpq++.so
 %{_includedir}/pgsql/libpq++/*.h
 %{_libdir}/lib*.so
 %{_libdir}/lib*.a
+
+
+%changelog
+* Sun Dec 05 2010 Oden Eriksson <oeriksson@mandriva.com> 4.0-16mdv2011.0
++ Revision: 609773
+- rebuild
+
+* Mon Apr 19 2010 Funda Wang <fwang@mandriva.org> 4.0-15mdv2010.1
++ Revision: 536664
+- fix build
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+    - rebuild
+    - kill re-definition of %%buildroot on Pixel's request
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Sun Sep 09 2007 Oden Eriksson <oeriksson@mandriva.com> 4.0-12mdv2008.0
++ Revision: 83721
+- rebuild
+
+* Sun Sep 09 2007 Oden Eriksson <oeriksson@mandriva.com> 4.0-11mdv2008.0
++ Revision: 83654
+- new devel naming
+
+
+* Fri Jan 19 2007 Oden Eriksson <oeriksson@mandriva.com> 4.0-10mdv2007.0
++ Revision: 110669
+- rebuilt against new postgresql libs
+
+* Fri Dec 08 2006 Oden Eriksson <oeriksson@mandriva.com> 4.0-9mdv2007.1
++ Revision: 93714
+- Import libpq++
+
+* Fri Dec 08 2006 Oden Eriksson <oeriksson@mandriva.com> 4.0-9mdv2007.1
+- use the %%mkrel macro
+
+* Thu Dec 01 2005 Oden Eriksson <oeriksson@mandriva.com> 4.0-8mdk
+- rebuilt against openssl-0.9.8a
+
+* Thu Apr 21 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 4.0-7mdk
+- rebuilt against new postgresql libs
+- fix requires-on-release
+
+* Mon Jun 07 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 4.0-6mdk
+- rebuilt against new deps and with gcc v3.4.x
+- fix deps
+
