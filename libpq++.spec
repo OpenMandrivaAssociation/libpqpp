@@ -5,7 +5,7 @@
 Summary:	C++ interface for PostgreSQL
 Name:		libpq++
 Version:	4.0
-Release:	17
+Release:	18
 License:	BSD
 Group:		System/Libraries
 Url:		http://gborg.postgresql.org/project/libpqpp/projdisplay.php
