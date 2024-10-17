@@ -8,7 +8,7 @@ Version:	4.0
 Release:	18
 License:	BSD
 Group:		System/Libraries
-Url:		http://gborg.postgresql.org/project/libpqpp/projdisplay.php
+Url:		https://gborg.postgresql.org/project/libpqpp/projdisplay.php
 Source0:	%{name}-%{version}.tar.bz2
 Patch0:		libpq++-4.0-Makefile.patch
 Patch1:		libpq++-4.0-gcc43.patch
